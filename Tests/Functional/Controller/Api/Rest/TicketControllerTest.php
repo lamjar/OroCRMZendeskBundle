@@ -36,14 +36,14 @@ class TicketControllerTest extends WebTestCase
         $channelId = $this->getReference('zendesk_channel:first_test_channel')->getId();
         $this->client->request(
             'POST',
-            $this->getUrl('oro_api_post_ticket_sync_case', ['id' => $caseId, 'channelId' => 127])
+            $this->getUrl('oro_api_post_ticket_sync_case', ['id' => $caseId, 'channelId' => 0])
         );
         $response = $this->client->getResponse();
         $this->assertResponseStatusCodeEquals($response, 404);
 
         $this->client->request(
             'POST',
-            $this->getUrl('oro_api_post_ticket_sync_case', ['id' => 127, 'channelId' => $channelId])
+            $this->getUrl('oro_api_post_ticket_sync_case', ['id' => 0, 'channelId' => $channelId])
         );
         $response = $this->client->getResponse();
         $this->assertResponseStatusCodeEquals($response, 404);
